@@ -1,24 +1,36 @@
 import { Component, computed, signal } from '@angular/core';
+import { POKEMON_LIST } from './pokemon-list.fake';
+import { Pokemon } from './pokemon.model';
+import { PokemonBorderDirective } from './pokemon-border';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [
+    PokemonBorderDirective,
+    DatePipe,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  name = signal('Pikachu');
-  life = signal(21);
-  size = computed(
-    () => this.life() <= 15 ? "Petit" : this.life() > 15 && this.life() < 25 ? "Moyen" : "Grand"
-  )
+  pokemonList = signal(POKEMON_LIST);
+ 
+  size(pokemon: Pokemon){
+    if(pokemon.life <= 15){
+      return 'Petit';
+    }
+    if(pokemon.life >= 25){
+      return 'Grand'
+    }
 
-
-  incrementLife() {
-    this.life.update((life) => life +1)
+    return 'Moyen'
+  }
+  incrementLife(pokemon: Pokemon) {
+    pokemon.life = pokemon.life +1;
   }
 
-  decrementLife() {
-    this.life.update((life) => life -1)
+  decrementLife(pokemon:Pokemon) {
+    pokemon.life = pokemon.life -1;
   }
 }

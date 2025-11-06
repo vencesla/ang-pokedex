@@ -1,8 +1,43 @@
-<h1>Pokédex</h1>
-<h2>{{ name() }}</h2>
-<p>Taille: {{ size() }}</p>
-<p>Points de vie : {{ life() }}</p>
-<p>
-    <button (click)="incrementLife()">+</button>
-    <button (click)="decrementLife()">-</button>
-</p>
+<nav class="navbar bg-success mb-5">
+    <div class="container text-white justify-content-center">
+        <h1>Pokédex</h1>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        @for(pokemon of pokemonList(); track pokemon.id){
+        <div class="col-md-4">
+            <div class="card mb-3" appPokemonBorder [pokemonType]="pokemon.types[0]">
+                <div class="row g-0">
+                    <div
+                        class="col-md-4 d-flex align-items-center justify-content-center bg-light"
+                    >
+                        <img
+                            class="img-fluid rounded-start"
+                            [src]="pokemon.picture" 
+                            [alt]="pokemon.name"
+                        />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ pokemon.name }}</h5>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">
+                                Taille: {{ size(pokemon) }}
+                            </h6>
+                            <p  class="card-text"> {{ pokemon.created | date:'dd/MM/yy' }}</p>
+                            <p class="card-text">
+                                Points de vie: {{ pokemon.life }}
+                            </p>
+                            <div class="btn-group btn-group-sm" role="group">
+                                <button class="btn btn-outline-secondary" (click)="incrementLife(pokemon)" [disabled]="pokemon.life >= 30">+</button>
+                                <button class="btn btn-outline-secondary" (click)="decrementLife(pokemon)" [disabled]="pokemon.life <= 10">-</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>
