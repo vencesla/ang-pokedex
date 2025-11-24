@@ -12,10 +12,11 @@ export class PokemonService {
   }
 
   getPokemonById(id: number): Pokemon {
-    const pokemon = POKEMON_LIST.find((pokemon) => pokemon.id = id);
+    const pokemon = POKEMON_LIST.find((pokemon) => pokemon.id === id);
     if(!pokemon) {
       throw new Error(`No pokemon find with id ${id}`);
     }
+    console.log('Pokemon', pokemon);
     return pokemon;
   }
 
