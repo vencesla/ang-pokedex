@@ -16,7 +16,6 @@ export class PokemonService {
     if(!pokemon) {
       throw new Error(`No pokemon find with id ${id}`);
     }
-    console.log('Pokemon', pokemon);
     return pokemon;
   }
 

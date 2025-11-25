@@ -17,5 +17,5 @@ export class PokemonProfile {
 
   readonly pokemon = signal(
     this.#pokemonService.getPokemonById(this.#pokemonId)
-  );
+  ).asReadonly();
 }
