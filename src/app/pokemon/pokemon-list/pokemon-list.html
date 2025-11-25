@@ -50,15 +50,15 @@
                             <div class="btn-group btn-group-sm" role="group">
                                 <button class="btn btn-outline-secondary" (click)="incrementLife(pokemon)" [disabled]="pokemon.life >= 30">+</button>
                                 <button class="btn btn-outline-secondary" (click)="decrementLife(pokemon)" [disabled]="pokemon.life <= 10">-</button>
-                                <p class="card-text">
-                                    <a href="" 
-                                    class="text small text-mutted"
-                                    [routerLink]="['/pokemons', pokemon.id]"
-                                    >
-                                    Voir
-                                    </a>
-                                </p>
                             </div>
+                            <p class="card-text">
+                                <a href="" 
+                                class="text small text-mutted"
+                                [routerLink]="['/pokemons', pokemon.id]"
+                                >
+                                Voir
+                                </a>
+                            </p>
                         </div>
                     </div>
                 </div>
